@@ -6,5 +6,6 @@ It assumes your highlights are in a specific JSON format and available in an S3 
 
 
 ## Kindle Highlights JSON
-Example JSON containing highlights is available at `example_highlights.json`.
+Example JSON containing highlights is available at `example_highlights.json.` [Readsmart](https://chrome.google.com/webstore/detail/kindle-highlights-to-read/kghigmohnggnegnoielmjnkhookemobp?hl=en-US) is a Chrome extension you can use to download all your highlights. [Bookcision](https://readwise.io/bookcision) is a bookmarklet you can use to download highlights, although it only support downloading highlights for one book at a time.
 
+Thank you for visiting - happy reading!
