@@ -30,8 +30,8 @@ def parse_highlights(highlights):
         quote_indices = []
         for x in range(num_quotes):
             # no repeats
-            quote_index = 0
-            while quote_index in quote_indices:
+            quote_index = -1
+            while quote_index == -1 or quote_index in quote_indices:
                 quote_index = random.randint(0, len(book_quotes)-1)
             quote_indices.append(quote_index)
             quote = book_quotes[quote_index]["text"]
