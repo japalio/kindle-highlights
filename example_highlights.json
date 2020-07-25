@@ -1,0 +1,30 @@
+{
+	"books": [{
+			"asin": "B00WDVKZY0",
+			"authors": "Cixin Liu and Ken Liu",
+			"highlights": [{
+					"note": null,
+					"text": "Similarly, when humans truly enter space and are freed from the Earth, they cease to be human. So, to all of you I say this: When you think about heading into outer space without looking back, please reconsider. The cost you must pay is far greater than you could imagine."
+				},
+				{
+					"note": null,
+					"text": "But, in our age, conscience and duty are not ideals: an excess of either is seen as a mental illness called social-pressure personality disorder. You should seek treatment.”"
+				},
+				{
+					"note": null,
+					"text": "For two centuries, the human race had held on to a subconscious consensus: No matter how bad things got, someone would step in to take care of them."
+				}
+			],
+			"title": "Death's End (Remembrance of Earth's Past Book 3)"
+		},
+		{
+			"asin": "B07LF5STW2",
+			"title": "Do You Mind If I Cancel?: (Things That Still Annoy Me)",
+			"highlights": [{
+				"note": null,
+				"text": "wish to God I were a millennial. I’d be so good at it. Better than these shitty ones. I wouldn’t be wasting my time being offended by every little thing or promoting positive body images or getting involved in politics. I’d be avoiding people. I’d be working from home. I’d be watching TV on my laptop. They don’t know the nightmare it was to actually have had to talk to people all the time. And we weren’t allowed to have social anxiety like you are now. Nobody even knew about it. I would have been in heaven if I could have suffered from anxiety."
+			}],
+			"authors": "Gary Janetti"
+		}
+	]
+}
