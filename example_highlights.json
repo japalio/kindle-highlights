@@ -1,6 +1,5 @@
 {
 	"books": [{
-			"asin": "B00WDVKZY0",
 			"authors": "Cixin Liu and Ken Liu",
 			"highlights": [{
 					"note": null,
@@ -18,7 +17,6 @@
 			"title": "Death's End (Remembrance of Earth's Past Book 3)"
 		},
 		{
-			"asin": "B07LF5STW2",
 			"title": "Do You Mind If I Cancel?: (Things That Still Annoy Me)",
 			"highlights": [{
 				"note": null,
