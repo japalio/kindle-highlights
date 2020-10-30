@@ -4,6 +4,8 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 
+DAILY_KINDLE_HIGHLIGHTS_EMAIL = "dailykindlehighlights@gmail.com"
+
 
 def get_highlights(bucket, obj):
     s3 = boto3.resource('s3')
@@ -80,7 +82,7 @@ def send_email(text, email):
                     'Data': subject,
                 },
             },
-            Source=email,
+            Source=DAILY_KINDLE_HIGHLIGHTS_EMAIL,
         )
     # Display an error if something goes wrong.	
     except ClientError as e:
