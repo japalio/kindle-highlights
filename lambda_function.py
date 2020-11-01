@@ -75,7 +75,7 @@ def lambda_handler(event, context):
     for email, obj in zip(emails, objects):
         all_highlights = get_highlights(bucket, obj)
         parsed_highlights = kindle_highlights.parse_highlights(all_highlights)
-        selected_highlights = kindle_highlights.sample_uniformly(parsed_highlights)
+        selected_highlights = kindle_highlights.select_weighted(parsed_highlights)
         email_text = format_highlights(selected_highlights)
         send_email(email_text, email)
     

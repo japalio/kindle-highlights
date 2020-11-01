@@ -14,10 +14,9 @@ def main():
     with open(LARGE_EXAMPLE_HIGHLIGHTS_FILENAME) as f:
         highlights = json.load(f)
         parsed_highlights = kindle_highlights.parse_highlights(highlights)
-        selected_highlights = kindle_highlights.sample_uniformly(parsed_highlights)
+        selected_highlights = kindle_highlights.select_weighted(parsed_highlights)
         print_selected_highlights(selected_highlights)
 
 
 if __name__ == "__main__":
     main()
-    

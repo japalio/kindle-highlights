@@ -1,3 +1,4 @@
+import math
 import random
 
 MIN_HIGHLIGHTS = 5
@@ -19,15 +20,35 @@ def parse_highlights(highlights_json):
 
     return books_to_highlights
 
-def sample_uniformly(highlights):
+def select_uniformly(highlights):
     selected_highlights = {}
     books = random.sample(highlights.keys(), NUM_BOOKS_TO_SAMPLE)
     for book in books:
-        highlights = random.sample(highlights[book], NUM_HIGHLIGHTS_TO_SAMPLE)
-        selected_highlights[book] = highlights
+        sampled_highlights = random.sample(highlights[book], NUM_HIGHLIGHTS_TO_SAMPLE)
+        selected_highlights[book] = sampled_highlights
 
     return selected_highlights
 
-def sample_weighted(hightlights):
-    pass
+def select_weighted(highlights):
+    book_list = list(highlights.keys())
+    weight_list = [math.sqrt(len(highlights[book])) for book in book_list]
+    selected_highlights = {}
+    books = weighted_sample(book_list, weight_list, NUM_BOOKS_TO_SAMPLE)
+    for book in books:
+        sampled_highlights = random.sample(highlights[book], NUM_HIGHLIGHTS_TO_SAMPLE)
+        selected_highlights[book] = sampled_highlights
+
+    return selected_highlights
+
+def weighted_sample(population, weights, num):
+    selected = set()
+    while len(selected) < num:
+        r = random.random() * sum(weights)
+        total = 0.0
+        for i, elem in enumerate(population):
+            total += weights[i]
+            if r <= total:
+                selected.add(elem)
+                break
+    return list(selected)
 
