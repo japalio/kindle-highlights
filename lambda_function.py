@@ -16,6 +16,16 @@ def get_highlights(bucket, obj):
     json_content = json.loads(file_content)
     return json_content
 
+def parse_highlights2(highlights):
+    books_to_quotes = {}
+    for book in highlights["books"]:
+        title = book["title"]
+        books_to_quotes[title] = []
+        for highlight in book["highlights"]:
+            books_to_quotes[title].append(highlight["test"])
+
+    return books_to_quotes
+
 def parse_highlights(highlights):
     quotes = {}
     # randomly generate 2 numbers for book indices
