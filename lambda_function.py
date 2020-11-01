@@ -4,6 +4,8 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 
+import kindle_highlights
+
 DAILY_KINDLE_HIGHLIGHTS_EMAIL = "dailykindlehighlights@gmail.com"
 
 
@@ -16,51 +18,13 @@ def get_highlights(bucket, obj):
     json_content = json.loads(file_content)
     return json_content
 
-def parse_highlights2(highlights):
-    books_to_quotes = {}
-    for book in highlights["books"]:
-        title = book["title"]
-        books_to_quotes[title] = []
-        for highlight in book["highlights"]:
-            books_to_quotes[title].append(highlight["test"])
-
-    return books_to_quotes
-
-def parse_highlights(highlights):
-    quotes = {}
-    # randomly generate 2 numbers for book indices
-    while len(quotes.keys()) < 3:
-        book_index = random.randint(0, len(highlights["books"])-1)
-        book_quotes = highlights["books"][book_index]["highlights"]
-        title = highlights["books"][book_index]["title"]
-        if title in quotes:
-            continue
-        # for each book, randomly generate 2 numbers for quote indices
-        num_quotes = 2
-        if len(book_quotes) == 1:
-            num_quotes = 1
-        quote_indices = []
-        for x in range(num_quotes):
-            # no repeats
-            quote_index = -1
-            while quote_index == -1 or quote_index in quote_indices:
-                quote_index = random.randint(0, len(book_quotes)-1)
-            quote_indices.append(quote_index)
-            quote = book_quotes[quote_index]["text"]
-            if title in quotes:
-                quotes[title].append(quote)
-            else:
-                quotes[title] = [quote]
-
-    return quotes
-
 
 def format_highlights(selected_highlights):
     body_text = "<html><head></head><body>"
     for book in selected_highlights:
-        body_text += "<h3>Selected quotes from " + book + "</h3>\n"
-        for quote in selected_highlights[book]:
-            body_text += "<p>" + quote + "</p>\n\n"
+        body_text += "<h3>Selected highlights from " + book + "</h3>\n"
+        for highlight in selected_highlights[book]:
+            body_text += "<p>" + highlight + "</p>\n\n"
     body_text += "</body></html>"
     return body_text
 
@@ -110,7 +74,8 @@ def lambda_handler(event, context):
     objects = object_envar.split(',')
     for email, obj in zip(emails, objects):
         all_highlights = get_highlights(bucket, obj)
-        selected_highlights = parse_highlights(all_highlights)
+        parsed_highlights = kindle_highlights.parse_highlights(all_highlights)
+        selected_highlights = kindle_highlights.sample_uniformly(parsed_highlights)
         email_text = format_highlights(selected_highlights)
         send_email(email_text, email)
     
